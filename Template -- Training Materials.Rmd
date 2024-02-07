@@ -1,0 +1,59 @@
+---
+title: "Retail Transactions:  Training Material"
+author: "Rohit Shivthare"
+output: html_document
+---
+
+# Report on Skills Acquired during Data Analysis Project
+## Introduction
+During my involvement in the data analysis project, I encountered several challenging aspects of working with the data. In this report, I will highlight two of the most critical skills I acquired, along with explanations and instructions for effective use.
+
+## Skill 1. Data Cleaning and Preprocessing
+
+### Challenges:
+
+**Inconsistent Data Formats:** The data files provided had inconsistencies in date and time formats, making it difficult to perform time-based analysis.
+
+### Skills Acquired:
+
+**Data Parsing:** I learned to separate date and time from a single column into two distinct columns. This allowed for consistent formatting and eased time-based analysis.
+
+### Instructions for Use:
+
+1. Always inspect data for inconsistencies and missing values before analysis.
+2. Use functions like as.Date to convert date columns into a consistent format.
+3. Convert Date Time stamps into 2 different columns of Date and Time for generating easier monthly reports.
+
+### Example R Code for spliting into date and time for transactions and views datasets
+
+# Split the 'time' column into 'date' and 'time' columns
+transactions`$`date <- as.Date(substring(transactions$time, 1, 10))
+transactions`$`time <- format(as.POSIXct(transactions$time, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"), format = "%H:%M:%S")
+
+# Split the 'time' column into 'date' and 'time' columns
+views`$`date <- as.Date(substring(views$time, 1, 10))
+views`$`time <- format(as.POSIXct(views$time, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"), format = "%H:%M:%S")
+
+## Skill 2. Merging and Joining Data Tables
+
+### Challenges:
+
+**Multiple Data Tables:** We had to work with several data tables (e.g., customers, products, transactions, and views) and merge them effectively.
+
+**Complex Join Conditions:** Joining tables based on specific criteria required a good understanding of data relationships.
+
+### Skills Acquired:
+
+**Data Table Merging:** I learned how to use data.table's powerful merging capabilities to combine data efficiently.
+
+**Join Conditions:** I acquired expertise in specifying and applying complex join conditions to match data across tables accurately.
+
+### Instructions for Use:
+
+1. When working with multiple data tables, ensure they have a common key column (e.g., product_id, customer_id) for merging.
+2. Use data.table's merge capabilities to join tables, specifying the on parameter to define join conditions explicitly.
+
+### Example R Code for data table merging
+merged_data <- data.table::merge(table1, table2, by = "common_column")
+
+
